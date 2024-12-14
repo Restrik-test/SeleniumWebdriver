@@ -18,7 +18,7 @@ class ShoppingCartTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.driver.quit()
 
-    def test_product_page(self):
+    def test_shopping_cart(self):
         """Завдання № 5. Додавання продуктів у кошик"""
 
         self.samsung_product.open()

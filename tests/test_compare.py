@@ -19,7 +19,7 @@ class CompareTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.driver.quit()
 
-    def test_product_page(self):
+    def test_compare(self):
         """Завдання № 4. Тестування порівняння продуктів"""
 
         self.apple_product.open()

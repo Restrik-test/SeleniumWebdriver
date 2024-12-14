@@ -22,7 +22,7 @@ class AddReviewTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.driver.quit()
 
-    def test_product_page(self):
+    def test_add_review(self):
         """Завдання № 3. Тестування додавання відгуку на продукт"""
 
         self.product_page.reviews_tab_click()
