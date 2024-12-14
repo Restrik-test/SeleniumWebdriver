@@ -37,11 +37,12 @@ class ShoppingCartTest(unittest.TestCase):
 
         self.cart.open()
 
-        # Перевіряю чи відповідають назви продуктів у кошику продуктам, які були додані
+        # Перевіряю чи відповідають назви продуктів у кошику продуктам, які були додані, та загальну суму продуктів
         products = self.cart.get_products()
-        print(products[1].name)
-        print(products[0].name)
+        summary_data = self.cart.get_summary_data()
         for product in self.cart.get_products():
             assert product.name in (product1, product2)
+        assert products[0].total + products[1].total == summary_data[3].value == 606
 
-
+        self.cart.remove_all_products()
+        self.cart.check_no_products_message()
