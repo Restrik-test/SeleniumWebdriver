@@ -19,7 +19,7 @@ class SearchPageTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.driver.quit()
 
-    def test_product_page(self):
+    def test_search(self):
         """Завдання № 2. Тестування пошуку"""
 
         self.search_page.input_search('apple')
@@ -50,3 +50,16 @@ class SearchPageTest(unittest.TestCase):
         self.search_page.click_search_button()
 
         self.assertTrue('There is no product that matches the search criteria.' in self.search_page.get_content_text())
+
+        self.search_page.clear_search()
+
+        self.search_page.input_search('stunning')
+        self.search_page.click_description_search_checkbox()
+        self.search_page.click_search_button()
+
+        products: List[ProductInfo] = self.search_page.get_search_results()
+        names: List[str] = [product.name for product in products]
+
+        self.assertTrue('HP LP3065' in names)
+        self.assertTrue('iMac' in names)
+
