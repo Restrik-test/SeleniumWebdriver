@@ -8,7 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 
 
-from pageobjects.base_page import BasePage, extract_decimal_price
+from pageobjects.base_page import BasePage
+from extract_decimal_price import extract_decimal_price
 
 
 @dataclass
