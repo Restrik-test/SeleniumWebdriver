@@ -35,49 +35,38 @@ class CartPage(BasePage):
     def get_table(self) -> WebElement:
         return self.driver.find_element(By.CLASS_NAME, 'table-responsive')
 
-    def get_rows(self) -> list:
+    def get_rows(self) -> list[WebElement]:
         return self.get_table().find_elements(By.TAG_NAME, 'tr')[1:]
 
-    def get_products(self):
+    def get_products(self) -> list[Product]:
         products = []
 
         for row in self.get_rows():
             cells = row.find_elements(By.TAG_NAME, "td")
-            name = cells[1].text.split("\n")[0].strip()
-            model = cells[2].text.strip()
-            quantity = cells[3].find_element(By.TAG_NAME, "input").get_attribute("value").strip()
-            unit_price = cells[4].text.strip()
-            total = cells[5].text.strip()
-
             product = Product(
-                name=name,
-                model=model,
-                quantity=quantity,
-                unit_price=Decimal(extract_decimal_price(unit_price)),
-                total=Decimal(extract_decimal_price(total))
+                name=cells[1].text.split("\n")[0].strip(),
+                model=cells[2].text.strip(),
+                quantity=cells[3].find_element(By.TAG_NAME, "input").get_attribute("value").strip(),
+                unit_price=Decimal(extract_decimal_price(cells[4].text.strip())),
+                total=Decimal(extract_decimal_price(cells[5].text.strip()))
             )
-
-            # product = Product(name, model, quantity, unit_price, total)
             products.append(product)
         return products
 
     def get_summary_table(self) -> WebElement:
         return self.driver.find_element(By.CLASS_NAME, 'col-sm-offset-8')
 
-    def get_summary_rows(self) -> list:
+    def get_summary_rows(self) -> list[WebElement]:
         return self.get_summary_table().find_elements(By.TAG_NAME, 'tr')
 
-    def get_summary_data(self):
+    def get_summary_data(self) -> list[SummaryTable]:
         summary_data = []
 
         for row in self.get_summary_rows():
             cells = row.find_elements(By.TAG_NAME, "td")
-            name = cells[0].text.split(":")[0].strip()
-            value = cells[1].text.strip()
-
             data = SummaryTable(
-                name=name,
-                value=Decimal(extract_decimal_price(value))
+                name=cells[0].text.split(":")[0].strip(),
+                value=Decimal(extract_decimal_price(cells[1].text.strip()))
             )
             summary_data.append(data)
         return summary_data

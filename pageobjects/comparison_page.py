@@ -35,6 +35,6 @@ class ComparisonPage(BasePage):
             remove_buttons[0].click()
         WebDriverWait(self.driver, 10).until_not(visibility_of_element_located((By.CLASS_NAME, 'table')))
 
-    def check_no_products_message(self):
-        content = self.driver.find_element(By.ID, 'content')
-        assert 'You have not chosen any products to compare.' in content.text
+    def get_content_text(self) -> str:
+        content_text = self.driver.find_element(By.ID, 'content')
+        return content_text.text

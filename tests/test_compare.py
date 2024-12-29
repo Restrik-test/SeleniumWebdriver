@@ -39,5 +39,6 @@ class CompareTest(unittest.TestCase):
             assert product in found_products
 
         self.product_comparison_page.remove_all_products()
-        self.product_comparison_page.check_no_products_message()
+        content_text = self.product_comparison_page.get_content_text()
+        assert 'You have not chosen any products to compare.' in content_text
 
