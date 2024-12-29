@@ -45,4 +45,6 @@ class ShoppingCartTest(unittest.TestCase):
         assert products[0].total + products[1].total == summary_data[3].value == 606
 
         self.cart.remove_all_products()
-        self.cart.check_no_products_message()
+
+        content_text = self.cart.get_content_text()
+        assert 'Your shopping cart is empty!' in content_text

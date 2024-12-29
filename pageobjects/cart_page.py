@@ -94,6 +94,6 @@ class CartPage(BasePage):
             except StaleElementReferenceException:
                 continue
 
-    def check_no_products_message(self):
-        content = self.driver.find_element(By.ID, 'content')
-        assert 'Your shopping cart is empty!' in content.text
+    def get_content_text(self) -> str:
+        content_text = self.driver.find_element(By.ID, 'content')
+        return content_text.text
