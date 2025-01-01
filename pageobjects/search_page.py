@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.base_page import BasePage
-from extract_decimal_price import extract_decimal_price
+from helper import extract_decimal_price
 
 
 @dataclass

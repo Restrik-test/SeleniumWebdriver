@@ -1,4 +1,4 @@
-from _decimal import Decimal
+from decimal import Decimal
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -73,7 +73,6 @@ class ProductPage(BasePage):
 
     def add_to_cart_click(self):
         self.driver.find_element(By.ID, 'button-cart').click()
-        self.driver.find_element(By.ID, 'button-cart').click()
         WebDriverWait(self.driver, 10).until_not(text_to_be_present_in_element((
             By.ID, 'button-cart'), 'Loading...'))
 
@@ -94,6 +93,13 @@ class ProductPage(BasePage):
 
     def select_rating(self, value):
         self.driver.find_element(By.CSS_SELECTOR, f"input[type='radio'][name='rating'][value='{value}']").click()
+
+    def fill_review_form(self, rating: str, name: str, random_text: str):
+        self.select_rating(rating)
+        self.clear_your_name()
+        self.input_your_name(name)
+        self.clear_your_review()
+        self.input_your_review(random_text)
 
     def button_continue_click(self):
         self.driver.find_element(By.ID, 'button-review').click()

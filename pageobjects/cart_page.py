@@ -9,7 +9,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 
 
 from pageobjects.base_page import BasePage
-from extract_decimal_price import extract_decimal_price
+from helper import extract_decimal_price
 
 
 @dataclass

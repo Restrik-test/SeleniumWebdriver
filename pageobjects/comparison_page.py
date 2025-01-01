@@ -15,7 +15,7 @@ class ComparisonPage(BasePage):
         return self.driver.find_element(By.CLASS_NAME, 'table')
 
     def get_rows(self) -> list:
-        return self.driver.find_elements(By.TAG_NAME, 'tr')
+        return self.get_table().find_elements(By.TAG_NAME, 'tr')
 
     def find_product_names(self, product_names: list) -> list:
         found_products = []
